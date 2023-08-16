@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      
+
       - name: 'Az CLI login using OIDC'
         uses: azure/login@v1
         with:
@@ -19,7 +19,12 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-      - name: 'Run az commands'
+      - name: 'Run sample az commands'
         run: |
           az account show
           az group list
+
+      - name: 'Setup Terraform'
+        uses: hashicorp/setup-terraform@v1  
+
+
